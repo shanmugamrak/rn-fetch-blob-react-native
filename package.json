@@ -23,7 +23,8 @@
     "image header"
   ],
   "repository": {
-   "url": "https://github.com/shanmugamrak/rn-fetch-blob.git"
+   "type": "git", 
+   "url": "git+https://github.com/shanmugamrak/rn-fetch-blob-react-native.git"
   
   },
   "author": "Joltup",
