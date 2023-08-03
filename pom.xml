@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.kth</groupId>
-    <artifactId>github-action-maven-tutorial</artifactId>
+    <groupId>reactnative.app</groupId>
+    <artifactId>react-native-packages</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -13,6 +13,14 @@
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/shanmugamrak/rn-fetch-blob-react-native</url>
+    </repository>
+  </distributionManagement>         
 
     <build>
         <plugins>
@@ -42,6 +50,11 @@
                 </executions>
             </plugin>
             <plugin>
+                  <groupId>org.sonarsource.scanner.maven</groupId>
+                  <artifactId>sonar-maven-plugin</artifactId>
+                  <version>3.9.0.2155</version>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
@@ -60,14 +73,6 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-      <repository>
-         <id>github</id>
-         <name>GitHub Packages</name>
-         <url>https://maven.pkg.github.com/Shanridhu/rn-fetch-blob-react-native</url>
-      </repository>
-     </distributionManagement>
-       
 
     <dependencies>
 
