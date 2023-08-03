@@ -23,8 +23,7 @@
     "image header"
   ],
   "repository": {
-   "type": "git",
-   "url": "git://github.com/shanmugamrak/rn-fetch-blob.git"
+   "url": "https://github.com/shanmugamrak/rn-fetch-blob.git"
   
   },
   "author": "Joltup",
