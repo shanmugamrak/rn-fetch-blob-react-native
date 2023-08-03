@@ -38,36 +38,38 @@ jobs:
         with:
           node-version: ${{env.NODE_VERSION}}
           
-      #- name: Cache dependencies
-       # uses: actions/cache@v2
-        #with:
-         # path: ~/.npm
-          #key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          #restore-keys: |
-           # ${{ runner.os }}-node-
-
-      #- name: Install dependencies
-       # run: npm install          
-       
-     # - name: Build and test
-      #  run: npm run test        
-
-      - name: Cache Yarn packages
+      - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: ~/.yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Install npm dependencies
-        run: yarn install
+      - name: Install dependencies
+        run: npm install          
        
-      - name: Build and test React Native project
-        run: yarn test
+      - name: Build and test
+        run: npm run test       
         
-     # - name: Build project with Maven
-      #  run: mvn -B package --file pom.xml   
+      - name: Build project with Maven
+        run: mvn -B package --file pom.xml   
 
-     # - name: Publish package
-      #  run: mvn --batch-mode deploy
-       # env:
-        #  GITHUB_TOKEN: ${{ secrets.Workflow2_PAT_TOKEN_GITHUB }}     
+      - name: Publish package
+        run: mvn --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.Workflow2_PAT_TOKEN_GITHUB }}         
+
+      #- name: Cache Yarn packages
+       # uses: actions/cache@v2
+        #with:
+         # path: ~/.yarn
+          #key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      #- name: Install npm dependencies
+       # run: yarn install
+       
+      #- name: Build and test React Native project
+       # run: yarn test
+        
+    
