@@ -22,17 +22,6 @@ jobs:
           java-version: ${{env.JAVA_VERSION}}
           distribution: 'temurin'          
 
-      - name: Cache Maven dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      - name: Build and test Java project
-        run: mvn -B package --file pom.xml        
-        
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
@@ -50,11 +39,19 @@ jobs:
         run: npm install          
        
       - name: Build and test
-        run: npm run test       
+        run: npm run test      
         
-      - name: Build project with Maven
-        run: mvn -B package --file pom.xml   
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
+      - name: Build and test Java project
+        run: mvn -B package --file pom.xml             
+        
       - name: Publish package
         run: mvn --batch-mode deploy
         env:
